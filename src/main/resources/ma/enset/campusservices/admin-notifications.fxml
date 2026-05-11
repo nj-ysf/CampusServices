@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.AdminNotificationsController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="🔔 Envoyer des notifications" styleClass="page-title"/>
+
+    <VBox styleClass="form-card" spacing="14">
+        <Label text="Nouvelle notification" styleClass="section-title"/>
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <VBox spacing="4" minWidth="200">
+                <Label text="Destinataire" styleClass="field-label"/>
+                <ComboBox fx:id="destinataireCombo" prefWidth="200" styleClass="combo-custom"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Étudiant spécifique" styleClass="field-label"/>
+                <ComboBox fx:id="etudiantCombo" prefWidth="260" styleClass="combo-custom"/>
+            </VBox>
+        </HBox>
+        <VBox spacing="4">
+            <Label text="Message" styleClass="field-label"/>
+            <TextArea fx:id="messageArea" promptText="Saisir le message à envoyer…"
+                      prefHeight="90" wrapText="true" styleClass="textarea-custom"/>
+        </VBox>
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Button fx:id="btnEnvoyer" text="📤 Envoyer"
+                    onAction="#handleEnvoyer" styleClass="btn-primary"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+        </HBox>
+    </VBox>
+
+    <Label text="Historique des notifications envoyées (admin)" styleClass="section-title"/>
+    <ListView fx:id="listHistorique" VBox.vgrow="ALWAYS" styleClass="notif-list">
+        <placeholder>
+            <Label text="Aucune notification envoyée." styleClass="table-placeholder"/>
+        </placeholder>
+    </ListView>
+</VBox>

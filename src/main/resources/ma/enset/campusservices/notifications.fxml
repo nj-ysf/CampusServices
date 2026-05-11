@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.NotificationsController"
+      spacing="16" styleClass="page-content">
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="🔔 Notifications" styleClass="page-title" HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" styleClass="status-label"/>
+        <Button text="✔ Tout marquer comme lu" onAction="#handleMarquerToutesLues"
+                styleClass="btn-secondary"/>
+    </HBox>
+
+    <ListView fx:id="listNotifications" VBox.vgrow="ALWAYS" styleClass="notif-list">
+        <placeholder>
+            <Label text="Aucune notification." styleClass="table-placeholder"/>
+        </placeholder>
+    </ListView>
+</VBox>

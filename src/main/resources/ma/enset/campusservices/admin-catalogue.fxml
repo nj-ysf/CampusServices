@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.AdminCatalogueController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="📚 Gestion du catalogue" styleClass="page-title"/>
+
+    <!-- Formulaire ajout -->
+    <VBox styleClass="form-card" spacing="12">
+        <Label text="Ajouter une ressource" styleClass="section-title"/>
+        <HBox spacing="14" alignment="TOP_LEFT">
+            <VBox spacing="4" minWidth="120">
+                <Label text="Type" styleClass="field-label"/>
+                <ComboBox fx:id="typeCombo" prefWidth="120" styleClass="combo-custom"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Titre" styleClass="field-label"/>
+                <TextField fx:id="titreField" promptText="Titre de la ressource"
+                           styleClass="text-field-custom"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Auteur / Étudiant" styleClass="field-label"/>
+                <TextField fx:id="auteurField" promptText="Auteur"
+                           styleClass="text-field-custom"/>
+            </VBox>
+            <VBox spacing="4" minWidth="180">
+                <Label text="Catalogue" styleClass="field-label"/>
+                <ComboBox fx:id="catalogueCombo" prefWidth="180" styleClass="combo-custom"/>
+            </VBox>
+        </HBox>
+
+        <!-- Champs Livre -->
+        <HBox spacing="14">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="ISBN" styleClass="field-label"/>
+                <TextField fx:id="isbnField" promptText="ISBN" styleClass="text-field-custom"/>
+            </VBox>
+            <VBox spacing="4" minWidth="100">
+                <Label text="Pages" styleClass="field-label"/>
+                <TextField fx:id="pagesField" promptText="Nb pages" styleClass="text-field-custom"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Éditeur" styleClass="field-label"/>
+                <TextField fx:id="editeurField" promptText="Éditeur" styleClass="text-field-custom"/>
+            </VBox>
+            <!-- Champs Mémoire -->
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Spécialité" styleClass="field-label"/>
+                <TextField fx:id="specialiteField" promptText="Spécialité" styleClass="text-field-custom"/>
+            </VBox>
+            <VBox spacing="4" minWidth="80">
+                <Label text="Année" styleClass="field-label"/>
+                <TextField fx:id="anneeField" promptText="2024" styleClass="text-field-custom"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Encadrant" styleClass="field-label"/>
+                <TextField fx:id="encadrantField" promptText="Pr. Nom" styleClass="text-field-custom"/>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Button fx:id="btnAjouter" text="➕ Ajouter" onAction="#handleAjouter" styleClass="btn-primary"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+        </HBox>
+    </VBox>
+
+    <!-- Tableau -->
+    <TableView fx:id="tableRes" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colType"      text="Type"       prefWidth="80"/>
+            <TableColumn fx:id="colTitre"     text="Titre"      prefWidth="240"/>
+            <TableColumn fx:id="colAuteur"    text="Auteur"     prefWidth="150"/>
+            <TableColumn fx:id="colCatalogue" text="Catalogue"  prefWidth="150"/>
+            <TableColumn fx:id="colDispo"     text="Dispo."     prefWidth="60"/>
+            <TableColumn fx:id="colDetails"   text="Détails"    prefWidth="240"/>
+        </columns>
+        <placeholder>
+            <Label text="Catalogue vide." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <HBox>
+        <Button fx:id="btnSupprimer" text="🗑 Supprimer la ressource sélectionnée"
+                onAction="#handleSupprimer" styleClass="btn-danger"/>
+    </HBox>
+</VBox>

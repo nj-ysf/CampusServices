@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.AdminReservationsController"
+      spacing="16" styleClass="page-content">
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="🏫 Gestion des réservations" styleClass="page-title" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Filtrer par statut :" styleClass="field-label"/>
+        <ComboBox fx:id="filtreStatut" prefWidth="160" styleClass="combo-custom"/>
+        <Label fx:id="statusLabel" styleClass="status-label" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TableView fx:id="tableRes" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colId"       text="#"        prefWidth="50"/>
+            <TableColumn fx:id="colEtudiant" text="Étudiant" prefWidth="180"/>
+            <TableColumn fx:id="colSalle"    text="Salle"    prefWidth="180"/>
+            <TableColumn fx:id="colDebut"    text="Début"    prefWidth="150"/>
+            <TableColumn fx:id="colFin"      text="Fin"      prefWidth="150"/>
+            <TableColumn fx:id="colStatut"   text="Statut"   prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucune réservation." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <HBox spacing="12">
+        <Button fx:id="btnValider" text="✔ Valider la réservation"
+                onAction="#handleValider" styleClass="btn-primary"/>
+        <Button fx:id="btnRefuser" text="✘ Refuser la réservation"
+                onAction="#handleRefuser" styleClass="btn-danger"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.AdminEtudiantsController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="👥 Gestion des étudiants" styleClass="page-title"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Rechercher par nom, email, filière…"
+                   prefWidth="320" styleClass="text-field-custom"/>
+        <Button text="🔍 Rechercher" onAction="#handleRechercher" styleClass="btn-secondary"/>
+        <Label fx:id="statusLabel" styleClass="status-label" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TableView fx:id="tableEtudiants" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colId"       text="#"           prefWidth="50"/>
+            <TableColumn fx:id="colNom"      text="Nom complet" prefWidth="200"/>
+            <TableColumn fx:id="colEmail"    text="Email"       prefWidth="240"/>
+            <TableColumn fx:id="colFiliere"  text="Filière"     prefWidth="160"/>
+            <TableColumn fx:id="colStatut"   text="Statut"      prefWidth="100"/>
+            <TableColumn fx:id="colEmprunts" text="Emprunts"    prefWidth="90"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun étudiant trouvé." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <HBox spacing="12">
+        <Button fx:id="btnActiver"    text="✔ Activer le compte"   onAction="#handleActiver"   styleClass="btn-primary"/>
+        <Button fx:id="btnDesactiver" text="✘ Désactiver le compte" onAction="#handleDesactiver" styleClass="btn-danger"/>
+    </HBox>
+</VBox>

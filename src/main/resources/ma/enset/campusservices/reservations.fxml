@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.ReservationsController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="🏫 Réservations de salles" styleClass="page-title"/>
+
+    <!-- Nouvelle réservation -->
+    <VBox styleClass="form-card" spacing="12">
+        <Label text="Nouvelle réservation" styleClass="section-title"/>
+        <HBox spacing="14" alignment="CENTER_LEFT">
+            <VBox spacing="4">
+                <Label text="Salle" styleClass="field-label"/>
+                <ComboBox fx:id="salleCombo" prefWidth="200" styleClass="combo-custom"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Date" styleClass="field-label"/>
+                <DatePicker fx:id="datePicker" prefWidth="160"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Début" styleClass="field-label"/>
+                <ComboBox fx:id="heureDebut" prefWidth="100" styleClass="combo-custom"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Fin" styleClass="field-label"/>
+                <ComboBox fx:id="heureFin" prefWidth="100" styleClass="combo-custom"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text=" " styleClass="field-label"/>
+                <Button fx:id="btnReserver" text="✔ Réserver" onAction="#handleReserver"
+                        styleClass="btn-primary"/>
+            </VBox>
+        </HBox>
+        <Label fx:id="statusLabel" styleClass="status-label"/>
+    </VBox>
+
+    <!-- Mes réservations -->
+    <Label text="Mes réservations" styleClass="section-title"/>
+    <TableView fx:id="tableReservations" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colId" text="#" prefWidth="50"/>
+            <TableColumn fx:id="colSalle" text="Salle" prefWidth="200"/>
+            <TableColumn fx:id="colDebut" text="Début" prefWidth="160"/>
+            <TableColumn fx:id="colFin" text="Fin" prefWidth="160"/>
+            <TableColumn fx:id="colStatut" text="Statut" prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucune réservation." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <HBox spacing="10">
+        <Button fx:id="btnAnnuler" text="✘ Annuler la réservation sélectionnée"
+                onAction="#handleAnnuler" styleClass="btn-danger"/>
+    </HBox>
+</VBox>

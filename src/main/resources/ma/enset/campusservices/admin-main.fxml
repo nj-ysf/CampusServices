@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.enset.campusservices.controller.AdminMainController"
+            styleClass="main-root">
+
+    <left>
+        <VBox styleClass="sidebar admin-sidebar" prefWidth="230">
+            <VBox styleClass="sidebar-brand" alignment="CENTER">
+                <Label text="⚙ CampusServices" styleClass="sidebar-title"/>
+                <Label text="Panneau d'administration" styleClass="sidebar-filiere"
+                       style="-fx-text-fill: #f39c12;"/>
+            </VBox>
+
+            <VBox styleClass="sidebar-student">
+                <Label text="Connecté en tant que" styleClass="sidebar-label-small"/>
+                <Label fx:id="adminNameLabel" styleClass="sidebar-student-name"/>
+                <Label fx:id="adminRoleLabel" styleClass="sidebar-filiere"
+                       style="-fx-text-fill: #f39c12; -fx-font-size: 11px;"/>
+            </VBox>
+
+            <Separator styleClass="sidebar-sep"/>
+
+            <VBox spacing="4" styleClass="nav-menu" VBox.vgrow="ALWAYS">
+                <Button fx:id="navDashboard"     text="📊  Tableau de bord"
+                        onAction="#showDashboard"     maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navEtudiants"     text="👥  Gestion étudiants"
+                        onAction="#showEtudiants"     maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navReservations"  text="🏫  Réservations salles"
+                        onAction="#showReservations"  maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navDemandes"      text="📋  Demandes admin."
+                        onAction="#showDemandes"      maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navCatalogue"     text="📚  Gestion catalogue"
+                        onAction="#showCatalogue"     maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navNotifications" text="🔔  Envoyer notifications"
+                        onAction="#showNotifications" maxWidth="Infinity" styleClass="nav-btn"/>
+            </VBox>
+
+            <VBox styleClass="sidebar-logout">
+                <Separator styleClass="sidebar-sep"/>
+                <Button text="⬅  Déconnexion" onAction="#handleLogout"
+                        maxWidth="Infinity" styleClass="btn-logout"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>

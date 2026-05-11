@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.DashboardController"
+      spacing="28" styleClass="page-content">
+
+    <VBox spacing="4">
+        <Label fx:id="lblBienvenue" styleClass="page-title"/>
+        <Label text="Voici un résumé de vos activités en cours." styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Stats cards -->
+    <HBox spacing="18">
+        <VBox styleClass="stat-card stat-blue" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="📖" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblEmpruntsEnCours" text="0" styleClass="stat-number"/>
+            <Label text="Emprunt(s) en cours" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-green" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="🏫" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblReservationsActives" text="0" styleClass="stat-number"/>
+            <Label text="Réservation(s) actives" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-orange" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="📋" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblDemandesEnCours" text="0" styleClass="stat-number"/>
+            <Label text="Demande(s) en cours" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-red" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="🔔" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblNotifNonLues" text="0" styleClass="stat-number"/>
+            <Label text="Notification(s) non lue(s)" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <!-- Info panel -->
+    <VBox styleClass="info-panel" spacing="12">
+        <Label text="Informations importantes" styleClass="section-title"/>
+        <Label text="• Les emprunts de livres sont valables pour une durée de 14 jours." styleClass="info-line"/>
+        <Label text="• Les réservations de salles sont soumises à validation par l'administration." styleClass="info-line"/>
+        <Label text="• Les demandes administratives sont traitées dans un délai de 3 à 5 jours ouvrables." styleClass="info-line"/>
+        <Label text="• Pour toute urgence, contactez le bureau de la scolarité." styleClass="info-line"/>
+    </VBox>
+</VBox>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.AdminDashboardController"
+      spacing="28" styleClass="page-content">
+
+    <VBox spacing="4">
+        <Label fx:id="lblAdminName" styleClass="page-title"/>
+        <Label text="Vue d'ensemble de la plateforme CampusServices." styleClass="page-subtitle"/>
+    </VBox>
+
+    <HBox spacing="18">
+        <VBox styleClass="stat-card stat-blue" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="👥" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblTotalEtudiants" text="0" styleClass="stat-number"/>
+            <Label text="Étudiants inscrits" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-orange" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="📖" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblEmpruntsActifs" text="0" styleClass="stat-number"/>
+            <Label text="Emprunts actifs" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-red" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="🏫" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblReservationsAttente" text="0" styleClass="stat-number"/>
+            <Label text="Réservations en attente" styleClass="stat-label"/>
+        </VBox>
+        <VBox styleClass="stat-card stat-green" alignment="CENTER" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="📋" style="-fx-font-size: 32px;"/>
+            <Label fx:id="lblDemandesAttente" text="0" styleClass="stat-number"/>
+            <Label text="Demandes à traiter" styleClass="stat-label"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="info-panel" spacing="12">
+        <Label text="Actions rapides" styleClass="section-title"/>
+        <Label text="• Gérez les étudiants, leurs statuts et leurs emprunts via « Gestion étudiants »." styleClass="info-line"/>
+        <Label text="• Validez ou refusez les réservations de salles en attente." styleClass="info-line"/>
+        <Label text="• Traitez les demandes administratives (certificats, relevés, attestations)." styleClass="info-line"/>
+        <Label text="• Ajoutez ou supprimez des ressources dans le catalogue de la bibliothèque." styleClass="info-line"/>
+        <Label text="• Envoyez des notifications ciblées ou globales à tous les étudiants." styleClass="info-line"/>
+    </VBox>
+</VBox>

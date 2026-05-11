@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.enset.campusservices.controller.MainController"
+            styleClass="main-root">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="220">
+            <!-- Brand -->
+            <VBox styleClass="sidebar-brand" alignment="CENTER">
+                <Label text="🎓 CampusServices" styleClass="sidebar-title"/>
+                <Label fx:id="filiereLabel" styleClass="sidebar-filiere"/>
+            </VBox>
+
+            <!-- Student info -->
+            <VBox styleClass="sidebar-student">
+                <Label text="Connecté en tant que" styleClass="sidebar-label-small"/>
+                <Label fx:id="studentNameLabel" styleClass="sidebar-student-name"/>
+            </VBox>
+
+            <Separator styleClass="sidebar-sep"/>
+
+            <!-- Navigation -->
+            <VBox fx:id="navMenu" spacing="4" styleClass="nav-menu" VBox.vgrow="ALWAYS">
+                <Button fx:id="navDashboard" text="📊  Tableau de bord"
+                        onAction="#showDashboard" maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navBibliotheque" text="📚  Bibliothèque"
+                        onAction="#showBibliotheque" maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navEmprunts" text="📖  Mes emprunts"
+                        onAction="#showEmprunts" maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navReservations" text="🏫  Réservations salles"
+                        onAction="#showReservations" maxWidth="Infinity" styleClass="nav-btn"/>
+                <Button fx:id="navDemandes" text="📋  Demandes admin."
+                        onAction="#showDemandes" maxWidth="Infinity" styleClass="nav-btn"/>
+                <StackPane>
+                    <Button fx:id="navNotifications" text="🔔  Notifications"
+                            onAction="#showNotifications" maxWidth="Infinity" styleClass="nav-btn"/>
+                    <Label fx:id="notifBadge" styleClass="notif-badge"
+                           StackPane.alignment="TOP_RIGHT"/>
+                </StackPane>
+            </VBox>
+
+            <!-- Logout -->
+            <VBox styleClass="sidebar-logout">
+                <Separator styleClass="sidebar-sep"/>
+                <Button text="⬅  Déconnexion" onAction="#handleLogout"
+                        maxWidth="Infinity" styleClass="btn-logout"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CONTENT AREA -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>

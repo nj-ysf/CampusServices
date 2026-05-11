@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.EmpruntsController"
+      spacing="16" styleClass="page-content">
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="📖 Mes emprunts" styleClass="page-title" HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" styleClass="status-label"/>
+    </HBox>
+
+    <TableView fx:id="tableEmprunts" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colId" text="#" prefWidth="50"/>
+            <TableColumn fx:id="colRessource" text="Titre de la ressource" prefWidth="300"/>
+            <TableColumn fx:id="colType" text="Type" prefWidth="90"/>
+            <TableColumn fx:id="colDateEmprunt" text="Date d'emprunt" prefWidth="130"/>
+            <TableColumn fx:id="colStatut" text="Statut" prefWidth="200"/>
+        </columns>
+        <placeholder>
+            <Label text="Vous n'avez aucun emprunt." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="btnRetourner" text="↩ Retourner la ressource sélectionnée"
+                onAction="#handleRetourner" styleClass="btn-warning"/>
+    </HBox>
+</VBox>

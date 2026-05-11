@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.DemandesController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="📋 Demandes administratives" styleClass="page-title"/>
+
+    <!-- Nouvelle demande -->
+    <VBox styleClass="form-card" spacing="12">
+        <Label text="Nouvelle demande" styleClass="section-title"/>
+        <HBox spacing="14" alignment="TOP_LEFT">
+            <VBox spacing="4">
+                <Label text="Type de document" styleClass="field-label"/>
+                <ComboBox fx:id="typeCombo" prefWidth="220" styleClass="combo-custom"/>
+            </VBox>
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Description / Motif" styleClass="field-label"/>
+                <TextArea fx:id="descriptionArea" promptText="Précisez votre demande..."
+                          prefHeight="80" wrapText="true" styleClass="textarea-custom"/>
+            </VBox>
+        </HBox>
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Button fx:id="btnSoumettre" text="📤 Soumettre la demande"
+                    onAction="#handleSoumettre" styleClass="btn-primary"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+        </HBox>
+    </VBox>
+
+    <!-- Mes demandes -->
+    <Label text="Mes demandes" styleClass="section-title"/>
+    <TableView fx:id="tableDemandes" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colId" text="#" prefWidth="50"/>
+            <TableColumn fx:id="colType" text="Type" prefWidth="200"/>
+            <TableColumn fx:id="colStatut" text="Statut" prefWidth="120"/>
+            <TableColumn fx:id="colDate" text="Date de soumission" prefWidth="160"/>
+            <TableColumn fx:id="colDescription" text="Description" prefWidth="300"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucune demande soumise." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+</VBox>

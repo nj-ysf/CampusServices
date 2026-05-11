@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.AdminDemandesController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="📋 Traitement des demandes administratives" styleClass="page-title"/>
+
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Filtrer :" styleClass="field-label"/>
+        <ComboBox fx:id="filtreStatut" prefWidth="160" styleClass="combo-custom"/>
+        <Label fx:id="statusLabel" styleClass="status-label" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TableView fx:id="tableDem" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colId"          text="#"          prefWidth="50"/>
+            <TableColumn fx:id="colEtudiant"    text="Étudiant"   prefWidth="170"/>
+            <TableColumn fx:id="colType"        text="Type"       prefWidth="180"/>
+            <TableColumn fx:id="colStatut"      text="Statut"     prefWidth="120"/>
+            <TableColumn fx:id="colDate"        text="Date"       prefWidth="140"/>
+            <TableColumn fx:id="colDescription" text="Description" prefWidth="280"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucune demande." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <VBox styleClass="form-card" spacing="10">
+        <Label text="Commentaire / Motif (obligatoire pour un refus)" styleClass="field-label"/>
+        <TextArea fx:id="commentaireArea" promptText="Saisir un commentaire ou motif de refus…"
+                  prefHeight="72" wrapText="true" styleClass="textarea-custom"/>
+        <HBox spacing="12">
+            <Button fx:id="btnEnTraitement" text="🔄 Mettre en traitement"
+                    onAction="#handleEnTraitement" styleClass="btn-secondary"/>
+            <Button fx:id="btnValider"      text="✔ Valider la demande"
+                    onAction="#handleValider"      styleClass="btn-primary"/>
+            <Button fx:id="btnRefuser"      text="✘ Refuser la demande"
+                    onAction="#handleRefuser"      styleClass="btn-danger"/>
+        </HBox>
+    </VBox>
+</VBox>

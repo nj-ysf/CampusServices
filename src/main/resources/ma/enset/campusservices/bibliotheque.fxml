@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ma.enset.campusservices.controller.BibliothequeController"
+      spacing="16" styleClass="page-content">
+
+    <Label text="📚 Bibliothèque — Catalogue" styleClass="page-title"/>
+
+    <!-- Search bar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Rechercher par titre ou auteur..."
+                   styleClass="text-field-custom" prefWidth="280"/>
+        <ComboBox fx:id="typeFilter" prefWidth="140" styleClass="combo-custom"/>
+        <CheckBox fx:id="disponibleOnly" text="Disponibles uniquement"/>
+        <Button text="🔍 Rechercher" onAction="#handleRechercher" styleClass="btn-secondary"/>
+        <Label fx:id="statusLabel" styleClass="status-label" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tableRessources" VBox.vgrow="ALWAYS" styleClass="table-custom">
+        <columns>
+            <TableColumn fx:id="colType" text="Type" prefWidth="80"/>
+            <TableColumn fx:id="colTitre" text="Titre" prefWidth="250"/>
+            <TableColumn fx:id="colAuteur" text="Auteur" prefWidth="160"/>
+            <TableColumn fx:id="colCatalogue" text="Catalogue" prefWidth="160"/>
+            <TableColumn fx:id="colDisponible" text="Disponibilité" prefWidth="110"/>
+            <TableColumn fx:id="colDescription" text="Détails" prefWidth="240"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucune ressource trouvée." styleClass="table-placeholder"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Actions -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button fx:id="btnEmprunter" text="📖 Emprunter la ressource sélectionnée"
+                onAction="#handleEmprunter" styleClass="btn-primary"/>
+    </HBox>
+</VBox>
