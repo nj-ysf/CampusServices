@@ -8,24 +8,33 @@
            fx:controller="ma.enset.campusservices.controller.LoginController"
            styleClass="login-root">
 
-    <VBox alignment="CENTER" spacing="0" maxWidth="420" maxHeight="580"
+    <!-- Decorative blurred shapes (background) -->
+    <Pane styleClass="login-bg" pickOnBounds="false">
+        <Region styleClass="login-blob, login-blob-1" layoutX="-120" layoutY="-80"/>
+        <Region styleClass="login-blob, login-blob-2" layoutX="640" layoutY="420"/>
+        <Region styleClass="login-blob, login-blob-3" layoutX="320" layoutY="-160"/>
+    </Pane>
+
+    <VBox alignment="CENTER" spacing="0" maxWidth="440" maxHeight="560"
           styleClass="login-card">
 
         <!-- Header -->
-        <VBox alignment="CENTER" spacing="6" styleClass="login-header">
-            <Label text="🎓" style="-fx-font-size: 48px;"/>
+        <VBox alignment="CENTER" spacing="10" styleClass="login-header">
+            <StackPane styleClass="login-logo-wrap">
+                <Label text="🎓" styleClass="login-logo"/>
+            </StackPane>
             <Label text="CampusServices" styleClass="login-title"/>
             <Label text="ENSET — Gestion des services étudiants" styleClass="login-subtitle"/>
         </VBox>
 
         <!-- Form -->
-        <VBox spacing="14" styleClass="login-form">
-            <VBox spacing="5">
+        <VBox spacing="16" styleClass="login-form">
+            <VBox spacing="6">
                 <Label text="Adresse email" styleClass="field-label"/>
                 <TextField fx:id="emailField" promptText="prenom.nom@enset.ac.ma"
                            styleClass="text-field-custom"/>
             </VBox>
-            <VBox spacing="5">
+            <VBox spacing="6">
                 <Label text="Mot de passe" styleClass="field-label"/>
                 <PasswordField fx:id="passwordField" promptText="••••••••"
                                styleClass="text-field-custom"/>
@@ -34,20 +43,12 @@
             <Label fx:id="errorLabel" styleClass="error-label" wrapText="true"/>
 
             <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin"
-                    maxWidth="Infinity" styleClass="btn-primary"/>
+                    maxWidth="Infinity" styleClass="btn-primary, btn-login"/>
         </VBox>
 
         <!-- Footer -->
-        <VBox alignment="CENTER" styleClass="login-footer" spacing="4">
-            <Label text="━━  Comptes étudiants  ━━" styleClass="hint-label"
-                   style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-            <Label text="youssef.naji@enset.ac.ma  /  enset2025" styleClass="hint-label"/>
-            <Label text=" " styleClass="hint-label"/>
-            <Label text="━━  Comptes administration  ━━" styleClass="hint-label"
-                   style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-            <Label text="admin@enset.ac.ma  /  admin2025  (Administrateur)" styleClass="hint-label"/>
-            <Label text="biblio@enset.ac.ma  /  biblio2025  (Bibliothécaire)" styleClass="hint-label"/>
-            <Label text="salles@enset.ac.ma  /  salles2025  (Resp. salles)" styleClass="hint-label"/>
+        <VBox alignment="CENTER" styleClass="login-footer" spacing="2">
+            <Label text="© ENSET Mohammedia — CampusServices" styleClass="hint-label"/>
             <Label fx:id="versionLabel" styleClass="version-label"/>
         </VBox>
     </VBox>

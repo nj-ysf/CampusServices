@@ -2,8 +2,7 @@ package ma.enset.campusservices.model.enums;
 
 public enum StatutReservation {
     EN_ATTENTE("En attente"),
-    VALIDEE("Validée"),
-    REFUSEE("Refusée"),
+    CONFIRMEE("Confirmée"),
     ANNULEE("Annulée");
 
     private final String libelle;

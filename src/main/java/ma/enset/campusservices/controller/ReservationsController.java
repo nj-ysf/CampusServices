@@ -46,8 +46,8 @@ public class ReservationsController {
                 if (empty || item == null) { setText(null); setStyle(""); return; }
                 setText(item);
                 setStyle(switch (item) {
-                    case "Validée" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
-                    case "Refusée", "Annulée" -> "-fx-text-fill: #e74c3c; -fx-font-weight: bold;";
+                    case "Confirmée" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
+                    case "Annulée" -> "-fx-text-fill: #e74c3c; -fx-font-weight: bold;";
                     default -> "-fx-text-fill: #e67e22; -fx-font-weight: bold;";
                 });
             }

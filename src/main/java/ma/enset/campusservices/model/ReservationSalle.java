@@ -54,7 +54,7 @@ public class ReservationSalle {
     }
 
     public boolean isAnnulable() {
-        return statut == StatutReservation.EN_ATTENTE || statut == StatutReservation.VALIDEE;
+        return statut == StatutReservation.EN_ATTENTE || statut == StatutReservation.CONFIRMEE;
     }
 
     @Override

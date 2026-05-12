@@ -39,7 +39,7 @@
     <VBox styleClass="info-panel" spacing="12">
         <Label text="Actions rapides" styleClass="section-title"/>
         <Label text="• Gérez les étudiants, leurs statuts et leurs emprunts via « Gestion étudiants »." styleClass="info-line"/>
-        <Label text="• Validez ou refusez les réservations de salles en attente." styleClass="info-line"/>
+        <Label text="• Confirmez ou annulez les réservations de salles en attente." styleClass="info-line"/>
         <Label text="• Traitez les demandes administratives (certificats, relevés, attestations)." styleClass="info-line"/>
         <Label text="• Ajoutez ou supprimez des ressources dans le catalogue de la bibliothèque." styleClass="info-line"/>
         <Label text="• Envoyez des notifications ciblées ou globales à tous les étudiants." styleClass="info-line"/>

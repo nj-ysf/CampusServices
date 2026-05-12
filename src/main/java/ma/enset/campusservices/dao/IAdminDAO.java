@@ -9,4 +9,5 @@ public interface IAdminDAO {
     Optional<Admin> findByEmail(String email);
     Optional<Admin> findById(int id);
     List<Admin>     findAll();
+    void            updateMotDePasse(int id, String motDePasseHash);
 }

@@ -14,6 +14,14 @@ import java.util.List;
 public class DataStore {
 
     private static DataStore instance;
+    private static final String ADMIN_PASSWORD_HASH =
+            "$2a$12$qv/kQ/FKkS2j23zyuS1cF.BLEA8BYMYXOzSboCJcXf8PCncaSfIUe";
+    private static final String BIBLIO_PASSWORD_HASH =
+            "$2a$12$8QgzQL1YcGxYplwYR194weUXzbAdR8T9oJFhES6Bn3OtJsUIeEWWS";
+    private static final String SALLES_PASSWORD_HASH =
+            "$2a$12$vr2xu/yxblUhaaAD2p8swewkkdLt0cIhSCLtiyXs52n1RF27ClXVu";
+    private static final String ETUDIANT_PASSWORD_HASH =
+            "$2a$12$FcnMlSmTwArHJeArqfFQKO9gda8fOdS8wahRMzRTtMBxIL2y5RCDe";
 
     private final List<Etudiant>              etudiants     = new ArrayList<>();
     private final List<Admin>                 admins        = new ArrayList<>();
@@ -43,23 +51,23 @@ public class DataStore {
 
         // ── Admins ─────────────────────────────────────────────────────────
         admins.add(new Admin(1, "Administrateur", "Système",
-                "admin@enset.ac.ma",      "admin2025",  Role.ADMIN));
+                "admin@enset.ac.ma",      ADMIN_PASSWORD_HASH,  Role.ADMIN));
         admins.add(new Admin(2, "Moudi", "Hassan",
-                "biblio@enset.ac.ma",     "biblio2025", Role.BIBLIOTHECAIRE));
+                "biblio@enset.ac.ma",     BIBLIO_PASSWORD_HASH, Role.BIBLIOTHECAIRE));
         admins.add(new Admin(3, "Idrissi", "Mohamed",
-                "salles@enset.ac.ma",     "salles2025", Role.RESPONSABLE_SALLES));
+                "salles@enset.ac.ma",     SALLES_PASSWORD_HASH, Role.RESPONSABLE_SALLES));
 
         // ── Étudiants ──────────────────────────────────────────────────────
         Etudiant e1 = new Etudiant(nextEtudiantId++, "Naji",        "Youssef",
-                "youssef.naji@enset.ac.ma",        "enset2025", "GLSID-BDCC",    StatutEtudiant.ACTIF);
+                "youssef.naji@enset.ac.ma",        ETUDIANT_PASSWORD_HASH, "GLSID-BDCC",    StatutEtudiant.ACTIF);
         Etudiant e2 = new Etudiant(nextEtudiantId++, "Bousserhane", "Brahim",
-                "brahim.bousserhane@enset.ac.ma",  "enset2025", "GLSID-BDCC",    StatutEtudiant.ACTIF);
+                "brahim.bousserhane@enset.ac.ma",  ETUDIANT_PASSWORD_HASH, "GLSID-BDCC",    StatutEtudiant.ACTIF);
         Etudiant e3 = new Etudiant(nextEtudiantId++, "Ez-Zahery",   "Ahmed Amine",
-                "ahmed.ezzahery@enset.ac.ma",      "enset2025", "GLSID-BDCC",    StatutEtudiant.ACTIF);
+                "ahmed.ezzahery@enset.ac.ma",      ETUDIANT_PASSWORD_HASH, "GLSID-BDCC",    StatutEtudiant.ACTIF);
         Etudiant e4 = new Etudiant(nextEtudiantId++, "Khoury",      "Sara",
-                "sara.khoury@enset.ac.ma",         "enset2025", "Génie Électrique", StatutEtudiant.ACTIF);
+                "sara.khoury@enset.ac.ma",         ETUDIANT_PASSWORD_HASH, "Génie Électrique", StatutEtudiant.ACTIF);
         Etudiant e5 = new Etudiant(nextEtudiantId++, "Benali",      "Karim",
-                "karim.benali@enset.ac.ma",        "enset2025", "Génie Électrique", StatutEtudiant.INACTIF);
+                "karim.benali@enset.ac.ma",        ETUDIANT_PASSWORD_HASH, "Génie Électrique", StatutEtudiant.INACTIF);
         etudiants.addAll(List.of(e1, e2, e3, e4, e5));
 
         // ── Catalogues ─────────────────────────────────────────────────────

@@ -45,8 +45,7 @@ public class ReservationService implements IGestionable<ReservationSalle> {
     public ReservationSalle creerReservation(Etudiant etudiant, Salle salle,
                                               LocalDateTime debut, LocalDateTime fin) {
         boolean conflit = reservationDAO.findBySalle(salle.getId()).stream()
-                .filter(r -> r.getStatut() != StatutReservation.ANNULEE
-                          && r.getStatut() != StatutReservation.REFUSEE)
+                .filter(r -> r.getStatut() != StatutReservation.ANNULEE)
                 .anyMatch(r -> debut.isBefore(r.getDateFin()) && fin.isAfter(r.getDateDebut()));
 
         if (conflit) {

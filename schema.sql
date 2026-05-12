@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS reservations_salles (
     date_debut  TIMESTAMP   NOT NULL,
     date_fin    TIMESTAMP   NOT NULL,
     statut      VARCHAR(20) NOT NULL DEFAULT 'EN_ATTENTE'
-                CHECK (statut IN ('EN_ATTENTE','VALIDEE','REFUSEE','ANNULEE'))
+                CHECK (statut IN ('EN_ATTENTE','CONFIRMEE','ANNULEE'))
 );
 
 -- ── Demandes administratives ───────────────────────────────
@@ -110,18 +110,18 @@ CREATE TABLE IF NOT EXISTS notifications (
 
 -- Comptes admin
 INSERT INTO admins (nom, prenom, email, mot_de_passe, role) VALUES
-  ('Administrateur', 'Super',  'admin@enset.ac.ma',  'admin2025',  'ADMINISTRATEUR'),
-  ('Bouali',         'Karim',  'biblio@enset.ac.ma', 'biblio2025', 'BIBLIOTHECAIRE'),
-  ('Mansouri',       'Leila',  'salles@enset.ac.ma', 'salles2025', 'RESPONSABLE_SALLES')
+  ('Administrateur', 'Super',  'admin@enset.ac.ma',  '$2a$12$qv/kQ/FKkS2j23zyuS1cF.BLEA8BYMYXOzSboCJcXf8PCncaSfIUe', 'ADMINISTRATEUR'),
+  ('Bouali',         'Karim',  'biblio@enset.ac.ma', '$2a$12$8QgzQL1YcGxYplwYR194weUXzbAdR8T9oJFhES6Bn3OtJsUIeEWWS', 'BIBLIOTHECAIRE'),
+  ('Mansouri',       'Leila',  'salles@enset.ac.ma', '$2a$12$vr2xu/yxblUhaaAD2p8swewkkdLt0cIhSCLtiyXs52n1RF27ClXVu', 'RESPONSABLE_SALLES')
 ON CONFLICT (email) DO NOTHING;
 
 -- Comptes étudiants de test
 INSERT INTO etudiants (nom, prenom, email, mot_de_passe, filiere, statut) VALUES
-  ('Naji',         'Youssef', 'youssef.naji@enset.ac.ma',         'enset2025', 'Génie Informatique',       'ACTIF'),
-  ('Bousserhane',  'Brahim',  'brahim.bousserhane@enset.ac.ma',   'enset2025', 'Génie Électrique',         'ACTIF'),
-  ('Ezzahery',     'Ahmed',   'ahmed.ezzahery@enset.ac.ma',       'enset2025', 'Génie Mécanique',          'ACTIF'),
-  ('Benali',       'Sara',    'sara.benali@enset.ac.ma',          'enset2025', 'Génie Civil',              'ACTIF'),
-  ('Chafik',       'Omar',    'omar.chafik@enset.ac.ma',          'enset2025', 'Génie des Systèmes',       'INACTIF')
+  ('Naji',         'Youssef', 'youssef.naji@enset.ac.ma',         '$2a$12$FcnMlSmTwArHJeArqfFQKO9gda8fOdS8wahRMzRTtMBxIL2y5RCDe', 'Génie Informatique',       'ACTIF'),
+  ('Bousserhane',  'Brahim',  'brahim.bousserhane@enset.ac.ma',   '$2a$12$FcnMlSmTwArHJeArqfFQKO9gda8fOdS8wahRMzRTtMBxIL2y5RCDe', 'Génie Électrique',         'ACTIF'),
+  ('Ezzahery',     'Ahmed',   'ahmed.ezzahery@enset.ac.ma',       '$2a$12$FcnMlSmTwArHJeArqfFQKO9gda8fOdS8wahRMzRTtMBxIL2y5RCDe', 'Génie Mécanique',          'ACTIF'),
+  ('Benali',       'Sara',    'sara.benali@enset.ac.ma',          '$2a$12$FcnMlSmTwArHJeArqfFQKO9gda8fOdS8wahRMzRTtMBxIL2y5RCDe', 'Génie Civil',              'ACTIF'),
+  ('Chafik',       'Omar',    'omar.chafik@enset.ac.ma',          '$2a$12$FcnMlSmTwArHJeArqfFQKO9gda8fOdS8wahRMzRTtMBxIL2y5RCDe', 'Génie des Systèmes',       'INACTIF')
 ON CONFLICT (email) DO NOTHING;
 
 -- Catalogues

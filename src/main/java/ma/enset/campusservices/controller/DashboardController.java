@@ -29,7 +29,7 @@ public class DashboardController {
         long emprunts = bibliothequeService.getEmpruntsActifs(etudiant).size();
         long reservations = reservationService.getReservationsEtudiant(etudiant).stream()
                 .filter(r -> r.getStatut().name().equals("EN_ATTENTE")
-                        || r.getStatut().name().equals("VALIDEE"))
+                        || r.getStatut().name().equals("CONFIRMEE"))
                 .count();
         long demandes = demandeService.getDemandesEtudiant(etudiant).stream()
                 .filter(d -> d.getStatut().name().equals("SOUMISE")

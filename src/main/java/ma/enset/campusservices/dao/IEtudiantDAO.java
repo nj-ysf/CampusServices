@@ -11,6 +11,7 @@ public interface IEtudiantDAO {
     Optional<Etudiant> findById(int id);
     List<Etudiant>     findAll();
     Etudiant           save(Etudiant etudiant);
+    void               updateMotDePasse(int id, String motDePasseHash);
     void               updateStatut(int id, StatutEtudiant statut);
     void               delete(int id);
 }

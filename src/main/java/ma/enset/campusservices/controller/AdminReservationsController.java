@@ -39,7 +39,7 @@ public class AdminReservationsController {
         colorerStatut(colStatut);
 
         filtreStatut.setItems(FXCollections.observableArrayList(
-                "Toutes", "En attente", "Validée", "Refusée", "Annulée"));
+                "Toutes", "En attente", "Confirmée", "Annulée"));
         filtreStatut.setValue("Toutes");
         filtreStatut.setOnAction(e -> charger());
 
@@ -68,22 +68,22 @@ public class AdminReservationsController {
     @FXML private void handleValider() {
         ReservationSalle sel = tableRes.getSelectionModel().getSelectedItem();
         if (sel == null) return;
-        reservationDAO.updateStatut(sel.getId(), StatutReservation.VALIDEE);
+        reservationDAO.updateStatut(sel.getId(), StatutReservation.CONFIRMEE);
         notifSvc.creerNotification(sel.getEtudiant(),
-                "Votre réservation pour \"" + sel.getSalle().getNom() + "\" a été validée ✔", "reservation");
+                "Votre réservation pour \"" + sel.getSalle().getNom() + "\" a été confirmée.", "reservation");
         charger();
-        statusLabel.setText("Réservation #" + sel.getId() + " validée.");
+        statusLabel.setText("Réservation #" + sel.getId() + " confirmée.");
         statusLabel.setStyle("-fx-text-fill: #27ae60;");
     }
 
     @FXML private void handleRefuser() {
         ReservationSalle sel = tableRes.getSelectionModel().getSelectedItem();
         if (sel == null) return;
-        reservationDAO.updateStatut(sel.getId(), StatutReservation.REFUSEE);
+        reservationDAO.updateStatut(sel.getId(), StatutReservation.ANNULEE);
         notifSvc.creerNotification(sel.getEtudiant(),
-                "Votre réservation pour \"" + sel.getSalle().getNom() + "\" a été refusée ✘", "reservation");
+                "Votre réservation pour \"" + sel.getSalle().getNom() + "\" a été annulée.", "reservation");
         charger();
-        statusLabel.setText("Réservation #" + sel.getId() + " refusée.");
+        statusLabel.setText("Réservation #" + sel.getId() + " annulée.");
         statusLabel.setStyle("-fx-text-fill: #e74c3c;");
     }
 
@@ -94,9 +94,9 @@ public class AdminReservationsController {
                 if (empty || item == null) { setText(null); setStyle(""); return; }
                 setText(item);
                 setStyle(switch (item) {
-                    case "Validée"    -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
-                    case "Refusée", "Annulée" -> "-fx-text-fill: #e74c3c; -fx-font-weight: bold;";
-                    default           -> "-fx-text-fill: #e67e22; -fx-font-weight: bold;";
+                    case "Confirmée" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
+                    case "Annulée"   -> "-fx-text-fill: #e74c3c; -fx-font-weight: bold;";
+                    default          -> "-fx-text-fill: #e67e22; -fx-font-weight: bold;";
                 });
             }
         });

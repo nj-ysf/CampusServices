@@ -84,7 +84,7 @@ public class ReservationDAOImpl implements IReservationDAO {
     public ReservationSalle save(ReservationSalle reservation) {
         String sql = """
                 INSERT INTO reservations_salles (etudiant_id, salle_id, date_debut, date_fin, statut)
-                VALUES (?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?::statut_reservation_enum)
                 RETURNING id
                 """;
         try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
@@ -102,7 +102,7 @@ public class ReservationDAOImpl implements IReservationDAO {
 
     @Override
     public void updateStatut(int id, StatutReservation statut) {
-        String sql = "UPDATE reservations_salles SET statut = ? WHERE id = ?";
+        String sql = "UPDATE reservations_salles SET statut = ?::statut_reservation_enum WHERE id = ?";
         try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
             ps.setString(1, statut.name());
             ps.setInt(2, id);

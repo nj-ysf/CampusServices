@@ -33,9 +33,9 @@
     </TableView>
 
     <HBox spacing="12">
-        <Button fx:id="btnValider" text="✔ Valider la réservation"
+        <Button fx:id="btnValider" text="✔ Confirmer la réservation"
                 onAction="#handleValider" styleClass="btn-primary"/>
-        <Button fx:id="btnRefuser" text="✘ Refuser la réservation"
+        <Button fx:id="btnRefuser" text="✘ Annuler la réservation"
                 onAction="#handleRefuser" styleClass="btn-danger"/>
     </HBox>
 </VBox>

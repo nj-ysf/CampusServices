@@ -4,6 +4,7 @@ import ma.enset.campusservices.dao.IEtudiantDAO;
 import ma.enset.campusservices.database.DatabaseConfig;
 import ma.enset.campusservices.model.Etudiant;
 import ma.enset.campusservices.model.enums.StatutEtudiant;
+import ma.enset.campusservices.security.PasswordHash;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class EtudiantDAOImpl implements IEtudiantDAO {
             ps.setString(1, etudiant.getNom());
             ps.setString(2, etudiant.getPrenom());
             ps.setString(3, etudiant.getEmail());
-            ps.setString(4, etudiant.getMotDePasse());
+            ps.setString(4, PasswordHash.hashIfNeeded(etudiant.getMotDePasse()));
             ps.setString(5, etudiant.getFiliere());
             ps.setString(6, etudiant.getStatut().name());
             try (ResultSet rs = ps.executeQuery()) {
@@ -80,6 +81,16 @@ public class EtudiantDAOImpl implements IEtudiantDAO {
             }
         } catch (SQLException e) { throw new RuntimeException(e); }
         return etudiant;
+    }
+
+    @Override
+    public void updateMotDePasse(int id, String motDePasseHash) {
+        String sql = "UPDATE etudiants SET mot_de_passe = ? WHERE id = ?";
+        try (PreparedStatement ps = db.getConnection().prepareStatement(sql)) {
+            ps.setString(1, PasswordHash.hashIfNeeded(motDePasseHash));
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) { throw new RuntimeException(e); }
     }
 
     @Override
