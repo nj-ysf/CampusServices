@@ -1,0 +1,6 @@
+@startuml
+[*] --> EN_COURS : emprunt créé
+EN_COURS --> RETOURNE : retour ressource
+RETOURNE --> [*]
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+start
+
+:Connexion back-office;
+
+if (Rôle valide ?) then (Oui)
+    :Afficher tableau de bord admin;
+
+    if (Action choisie ?) then (Gérer catalogue)
+        :Ajouter / supprimer ressource;
+        :Mettre à jour BD;
+
+    elseif (Gérer réservations)
+        :Lister réservations EN_ATTENTE;
+
+        if (Décision ?) then (Valider)
+            :Statut CONFIRMEE;
+            :Notifier étudiant;
+        else (Refuser)
+            :Statut REFUSEE;
+            :Notifier étudiant;
+        endif
+
+    elseif (Gérer demandes)
+        :Lister demandes SOUMISES;
+        :Consulter détails;
+
+        if (Décision ?) then (Valider)
+            :Statut VALIDEE;
+            :Notifier étudiant;
+        else (Refuser)
+            :Statut REFUSEE;
+            :Notifier étudiant;
+        endif
+
+    else (Gérer étudiants)
+        :Activer / désactiver compte;
+    endif
+
+else (Non)
+    :Accès refusé;
+endif
+
+stop
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+[*] --> EN_ATTENTE : création réservation
+
+EN_ATTENTE --> CONFIRMEE : responsable valide
+EN_ATTENTE --> REFUSEE : responsable refuse
+EN_ATTENTE --> ANNULEE : étudiant annule
+
+CONFIRMEE --> ANNULEE : annulation avant créneau
+
+CONFIRMEE --> [*]
+REFUSEE --> [*]
+ANNULEE --> [*]
+
+@enduml

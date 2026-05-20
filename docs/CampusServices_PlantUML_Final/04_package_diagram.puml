@@ -1,0 +1,84 @@
+@startuml
+skinparam packageStyle rectangle
+
+package "resources" {
+    package "fxml"
+    package "css"
+}
+
+package "controller" {
+    [LoginController]
+    [MainController]
+    [AdminMainController]
+}
+
+package "service" {
+    [AuthService]
+    [BibliothequeService]
+    [ReservationService]
+    [DemandeService]
+    [NotificationService]
+}
+
+package "dao" {
+    [IEtudiantDAO]
+    [IAdminDAO]
+    [IRessourceDAO]
+    [IReservationDAO]
+    [IDemandeDAO]
+    [INotificationDAO]
+}
+
+package "dao.impl" {
+    [EtudiantDAOImpl]
+    [AdminDAOImpl]
+    [RessourceDAOImpl]
+    [ReservationDAOImpl]
+    [DemandeDAOImpl]
+    [NotificationDAOImpl]
+}
+
+package "model" {
+    [Etudiant]
+    [Admin]
+    [Ressource]
+    [Livre]
+    [Memoire]
+    [Salle]
+    [Emprunt]
+    [ReservationSalle]
+    [DemandeAdministrative]
+    [Notification]
+}
+
+package "enums" {
+    [Role]
+    [StatutEtudiant]
+    [StatutReservation]
+    [StatutDemande]
+    [StatutEmprunt]
+    [TypeDemande]
+}
+
+package "database" {
+    [DatabaseConfig]
+}
+
+package "security" {
+    [PasswordHash]
+}
+
+database "PostgreSQL" as PostgreSQL
+
+resources --> controller
+controller --> service
+service --> dao
+service --> model
+service --> enums
+dao --> model
+dao.impl --> dao
+dao.impl --> database
+database --> PostgreSQL
+service --> security
+
+@enduml

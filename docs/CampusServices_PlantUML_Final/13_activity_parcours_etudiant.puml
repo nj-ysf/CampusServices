@@ -1,0 +1,41 @@
+@startuml
+start
+
+:Accès CampusServices;
+:Saisir identifiants;
+
+if (Authentification OK ?) then (Oui)
+    if (Étudiant actif ?) then (Oui)
+        :Afficher tableau de bord;
+
+        if (Service choisi ?) then (Bibliothèque)
+            :Rechercher ressource;
+            :Demander emprunt;
+            :Enregistrer emprunt;
+            :Envoyer notification;
+
+        elseif (Réservation salle)
+            :Choisir salle et créneau;
+            :Créer réservation EN_ATTENTE;
+            :Envoyer notification;
+
+        elseif (Demande administrative)
+            :Remplir formulaire;
+            :Soumettre demande SOUMISE;
+            :Envoyer notification;
+
+        else (Suivi)
+            :Consulter emprunts, réservations et demandes;
+        endif
+
+    else (Non)
+        :Afficher erreur d'accès;
+    endif
+
+else (Non)
+    :Afficher erreur d'authentification;
+    :Retour à la saisie des identifiants;
+endif
+
+stop
+@enduml

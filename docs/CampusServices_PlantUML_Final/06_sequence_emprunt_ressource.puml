@@ -1,0 +1,24 @@
+@startuml
+actor Etudiant
+participant BibliothequeController
+participant BibliothequeService
+participant RessourceDAO
+participant EmpruntDAO
+participant NotificationService
+
+Etudiant -> BibliothequeController : choisir ressource disponible
+BibliothequeController -> BibliothequeService : emprunter(etudiant, ressource)
+
+BibliothequeService -> RessourceDAO : findById(ressourceId)
+RessourceDAO --> BibliothequeService : Ressource
+
+alt ressource disponible et étudiant actif
+    BibliothequeService -> EmpruntDAO : save(emprunt)
+    BibliothequeService -> RessourceDAO : updateDisponibilite(false)
+    BibliothequeService -> NotificationService : envoyer confirmation
+    BibliothequeService --> BibliothequeController : emprunt créé
+else ressource indisponible
+    BibliothequeService --> BibliothequeController : erreur
+end
+
+@enduml

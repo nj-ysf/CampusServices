@@ -1,0 +1,16 @@
+@startuml
+actor Etudiant
+participant DemandesController
+participant DemandeService
+participant DemandeDAO
+participant NotificationService
+
+Etudiant -> DemandesController : remplir formulaire
+DemandesController -> DemandeService : soumettreDemande(etudiant, type, motif)
+
+DemandeService -> DemandeDAO : save(statut = SOUMISE)
+DemandeService -> NotificationService : notifier réception
+
+DemandeService --> DemandesController : demande créée
+
+@enduml

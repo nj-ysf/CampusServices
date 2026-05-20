@@ -1,0 +1,11 @@
+@startuml
+[*] --> SOUMISE : étudiant soumet
+
+SOUMISE --> EN_TRAITEMENT : admin prend en charge
+EN_TRAITEMENT --> VALIDEE : réponse positive
+EN_TRAITEMENT --> REFUSEE : réponse négative
+
+VALIDEE --> [*]
+REFUSEE --> [*]
+
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Étudiant" as Etudiant
+actor "Administrateur" as Admin
+actor "Bibliothécaire" as Biblio
+actor "Responsable salles" as RespSalle
+
+rectangle "CampusServices" {
+    usecase "Se connecter" as UC1
+    usecase "Consulter catalogue" as UC2
+    usecase "Emprunter ressource" as UC3
+    usecase "Retourner ressource" as UC4
+    usecase "Réserver salle" as UC5
+    usecase "Annuler réservation" as UC6
+    usecase "Soumettre demande\nadministrative" as UC7
+    usecase "Consulter notifications" as UC8
+
+    usecase "Gérer étudiants" as UC9
+    usecase "Activer / désactiver\nétudiant" as UC10
+    usecase "Gérer catalogue" as UC11
+    usecase "Ajouter / supprimer\nressource" as UC12
+    usecase "Valider / refuser\nréservation" as UC13
+    usecase "Traiter demande\nadministrative" as UC14
+    usecase "Envoyer notification" as UC15
+}
+
+Etudiant --> UC1
+Etudiant --> UC2
+Etudiant --> UC3
+Etudiant --> UC4
+Etudiant --> UC5
+Etudiant --> UC6
+Etudiant --> UC7
+Etudiant --> UC8
+
+Admin --> UC1
+Admin --> UC9
+Admin --> UC10
+Admin --> UC14
+Admin --> UC15
+
+Biblio --> UC1
+Biblio --> UC11
+Biblio --> UC12
+
+RespSalle --> UC1
+RespSalle --> UC13
+
+UC9 ..> UC10 : <<include>>
+UC11 ..> UC12 : <<include>>
+
+@enduml

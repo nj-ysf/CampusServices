@@ -1,0 +1,110 @@
+@startuml
+hide circle
+skinparam linetype ortho
+
+entity "ETUDIANT" as ETUDIANT {
+    * id : int <<PK>>
+    --
+    nom : varchar
+    prenom : varchar
+    email : varchar
+    mot_de_passe : varchar
+    filiere : varchar
+    statut : varchar
+}
+
+entity "ADMIN" as ADMIN {
+    * id : int <<PK>>
+    --
+    nom : varchar
+    prenom : varchar
+    email : varchar
+    mot_de_passe : varchar
+    role : varchar
+}
+
+entity "CATALOGUE" as CATALOGUE {
+    * id : int <<PK>>
+    --
+    nom : varchar
+    description : text
+}
+
+entity "RESSOURCE" as RESSOURCE {
+    * id : int <<PK>>
+    --
+    catalogue_id : int <<FK>>
+    type : varchar
+    titre : varchar
+    auteur : varchar
+    disponible : boolean
+    isbn : varchar
+    nb_pages : int
+    editeur : varchar
+    specialite : varchar
+    annee : int
+    encadrant : varchar
+}
+
+entity "SALLE" as SALLE {
+    * id : int <<PK>>
+    --
+    nom : varchar
+    capacite : int
+    type : varchar
+    disponible : boolean
+}
+
+entity "EMPRUNT" as EMPRUNT {
+    * id : int <<PK>>
+    --
+    etudiant_id : int <<FK>>
+    ressource_id : int <<FK>>
+    date_emprunt : date
+    date_retour_prevue : date
+    date_retour_effective : date
+    statut : varchar
+}
+
+entity "RESERVATION_SALLE" as RESERVATION {
+    * id : int <<PK>>
+    --
+    etudiant_id : int <<FK>>
+    salle_id : int <<FK>>
+    date_debut : timestamp
+    date_fin : timestamp
+    motif : text
+    statut : varchar
+}
+
+entity "DEMANDE_ADMINISTRATIVE" as DEMANDE {
+    * id : int <<PK>>
+    --
+    etudiant_id : int <<FK>>
+    type : varchar
+    motif : text
+    reponse : text
+    statut : varchar
+    date_creation : timestamp
+}
+
+entity "NOTIFICATION" as NOTIFICATION {
+    * id : int <<PK>>
+    --
+    etudiant_id : int <<FK>>
+    titre : varchar
+    message : text
+    lu : boolean
+    date_creation : timestamp
+}
+
+ETUDIANT ||--o{ EMPRUNT : effectue
+ETUDIANT ||--o{ RESERVATION : demande
+ETUDIANT ||--o{ DEMANDE : soumet
+ETUDIANT ||--o{ NOTIFICATION : reçoit
+
+CATALOGUE ||--o{ RESSOURCE : contient
+RESSOURCE ||--o{ EMPRUNT : concerne
+SALLE ||--o{ RESERVATION : concerne
+
+@enduml

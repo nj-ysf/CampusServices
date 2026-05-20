@@ -1,0 +1,26 @@
+@startuml
+actor Etudiant
+participant ReservationsController
+participant ReservationService
+participant SalleDAO
+participant ReservationDAO
+participant NotificationService
+
+Etudiant -> ReservationsController : saisir salle + créneau + motif
+ReservationsController -> ReservationService : creerReservation(etudiant, salle, debut, fin)
+
+ReservationService -> SalleDAO : findById(salleId)
+SalleDAO --> ReservationService : Salle
+
+ReservationService -> ReservationDAO : verifierDisponibilite(salle, debut, fin)
+ReservationDAO --> ReservationService : disponible / non disponible
+
+alt disponible
+    ReservationService -> ReservationDAO : save(statut = EN_ATTENTE)
+    ReservationService -> NotificationService : notifier étudiant
+    ReservationService --> ReservationsController : réservation créée
+else conflit de créneau
+    ReservationService --> ReservationsController : erreur disponibilité
+end
+
+@enduml

@@ -1,0 +1,154 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class Etudiant {
+    - id : int
+    - nom : String
+    - prenom : String
+    - email : String
+    - motDePasse : String
+    - filiere : String
+    - statut : StatutEtudiant
+    + getNomComplet() : String
+    + isActif() : boolean
+}
+
+class Admin {
+    - id : int
+    - nom : String
+    - prenom : String
+    - email : String
+    - motDePasse : String
+    - role : Role
+    + getNomComplet() : String
+}
+
+abstract class Ressource {
+    - id : int
+    - titre : String
+    - auteur : String
+    - disponible : boolean
+    - catalogue : Catalogue
+    + getType() : String
+    + getDescription() : String
+}
+
+class Livre {
+    - isbn : String
+    - nbPages : int
+    - editeur : String
+}
+
+class Memoire {
+    - specialite : String
+    - annee : int
+    - encadrant : String
+}
+
+class Catalogue {
+    - id : int
+    - nom : String
+    - description : String
+}
+
+class Salle {
+    - id : int
+    - nom : String
+    - capacite : int
+    - type : String
+    - disponible : boolean
+}
+
+class Emprunt {
+    - id : int
+    - dateEmprunt : LocalDate
+    - dateRetourPrevue : LocalDate
+    - dateRetourEffective : LocalDate
+    - statut : StatutEmprunt
+    + isEnCours() : boolean
+}
+
+class ReservationSalle {
+    - id : int
+    - dateDebut : LocalDateTime
+    - dateFin : LocalDateTime
+    - motif : String
+    - statut : StatutReservation
+    + isAnnulable() : boolean
+}
+
+class DemandeAdministrative {
+    - id : int
+    - type : TypeDemande
+    - motif : String
+    - reponse : String
+    - statut : StatutDemande
+    - dateCreation : LocalDateTime
+}
+
+class Notification {
+    - id : int
+    - titre : String
+    - message : String
+    - lu : boolean
+    - dateCreation : LocalDateTime
+    + marquerCommeLue() : void
+}
+
+enum Role {
+    ADMINISTRATEUR
+    BIBLIOTHECAIRE
+    RESPONSABLE_SALLES
+}
+
+enum StatutEtudiant {
+    ACTIF
+    INACTIF
+}
+
+enum StatutReservation {
+    EN_ATTENTE
+    CONFIRMEE
+    REFUSEE
+    ANNULEE
+}
+
+enum StatutDemande {
+    SOUMISE
+    EN_TRAITEMENT
+    VALIDEE
+    REFUSEE
+}
+
+enum StatutEmprunt {
+    EN_COURS
+    RETOURNE
+}
+
+enum TypeDemande {
+    CERTIFICAT_SCOLARITE
+    ATTESTATION_REUSSITE
+    RELEVE_NOTES
+    AUTRE
+}
+
+Ressource <|-- Livre
+Ressource <|-- Memoire
+
+Catalogue "1" --> "0..*" Ressource : contient
+Etudiant "1" --> "0..*" Emprunt : effectue
+Ressource "1" --> "0..*" Emprunt : concerne
+Etudiant "1" --> "0..*" ReservationSalle : demande
+Salle "1" --> "0..*" ReservationSalle : concerne
+Etudiant "1" --> "0..*" DemandeAdministrative : soumet
+Etudiant "1" --> "0..*" Notification : reçoit
+
+Admin ..> Role
+Etudiant ..> StatutEtudiant
+ReservationSalle ..> StatutReservation
+DemandeAdministrative ..> StatutDemande
+DemandeAdministrative ..> TypeDemande
+Emprunt ..> StatutEmprunt
+
+@enduml

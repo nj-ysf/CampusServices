@@ -1,0 +1,24 @@
+@startuml
+actor Admin
+participant AdminDemandesController
+participant DemandeService
+participant DemandeDAO
+participant NotificationService
+
+Admin -> AdminDemandesController : ouvrir demandes soumises
+AdminDemandesController -> DemandeService : listerDemandes()
+
+DemandeService -> DemandeDAO : findAll()
+DemandeDAO --> DemandeService : demandes
+
+DemandeService --> AdminDemandesController : afficher liste
+
+Admin -> AdminDemandesController : valider / refuser avec réponse
+AdminDemandesController -> DemandeService : traiterDemande(id, statut, reponse)
+
+DemandeService -> DemandeDAO : updateStatut(id, statut, reponse)
+DemandeService -> NotificationService : notifier étudiant
+
+DemandeService --> AdminDemandesController : traitement confirmé
+
+@enduml

@@ -1,0 +1,156 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class MainApp {
+    + start(stage : Stage) : void
+    + afficherLogin() : void
+    + afficherEspaceEtudiant() : void
+    + afficherEspaceAdmin() : void
+}
+
+class LoginController {
+    - authService : AuthService
+    + handleLogin() : void
+}
+
+class MainController
+class DashboardController
+class BibliothequeController
+class EmpruntsController
+class ReservationsController
+class DemandesController
+class NotificationsController
+
+class AdminMainController
+class AdminDashboardController
+class AdminEtudiantsController
+class AdminCatalogueController
+class AdminReservationsController
+class AdminDemandesController
+class AdminNotificationsController
+
+class AuthService {
+    + loginEtudiant(email : String, password : String) : Etudiant
+    + loginAdmin(email : String, password : String) : Admin
+    + logout() : void
+    + isAuthenticated() : boolean
+}
+
+class BibliothequeService {
+    + rechercherRessources(motCle : String) : List<Ressource>
+    + emprunter(etudiant : Etudiant, ressource : Ressource) : Emprunt
+    + retourner(emprunt : Emprunt) : void
+}
+
+class ReservationService {
+    + creerReservation(etudiant : Etudiant, salle : Salle, debut : LocalDateTime, fin : LocalDateTime) : ReservationSalle
+    + annulerReservation(id : int) : void
+    + validerReservation(id : int) : void
+    + refuserReservation(id : int) : void
+}
+
+class DemandeService {
+    + soumettreDemande(etudiant : Etudiant, type : TypeDemande, motif : String) : DemandeAdministrative
+    + traiterDemande(id : int, statut : StatutDemande, reponse : String) : void
+}
+
+class NotificationService {
+    + envoyerNotification(etudiant : Etudiant, message : String) : Notification
+    + envoyerNotificationGlobale(message : String) : void
+    + marquerCommeLue(id : int) : void
+}
+
+interface IEtudiantDAO
+interface IAdminDAO
+interface IRessourceDAO
+interface ICatalogueDAO
+interface ISalleDAO
+interface IEmpruntDAO
+interface IReservationDAO
+interface IDemandeDAO
+interface INotificationDAO
+
+class EtudiantDAOImpl
+class AdminDAOImpl
+class RessourceDAOImpl
+class CatalogueDAOImpl
+class SalleDAOImpl
+class EmpruntDAOImpl
+class ReservationDAOImpl
+class DemandeDAOImpl
+class NotificationDAOImpl
+
+class DatabaseConfig {
+    + getConnection() : Connection
+}
+
+class PasswordHash {
+    + hash(password : String) : String
+    + matches(password : String, hash : String) : boolean
+}
+
+MainApp --> LoginController
+MainApp --> MainController
+MainApp --> AdminMainController
+
+LoginController --> AuthService
+
+MainController --> DashboardController
+MainController --> BibliothequeController
+MainController --> EmpruntsController
+MainController --> ReservationsController
+MainController --> DemandesController
+MainController --> NotificationsController
+
+AdminMainController --> AdminDashboardController
+AdminMainController --> AdminEtudiantsController
+AdminMainController --> AdminCatalogueController
+AdminMainController --> AdminReservationsController
+AdminMainController --> AdminDemandesController
+AdminMainController --> AdminNotificationsController
+
+BibliothequeController --> BibliothequeService
+EmpruntsController --> BibliothequeService
+ReservationsController --> ReservationService
+DemandesController --> DemandeService
+NotificationsController --> NotificationService
+
+AuthService --> IEtudiantDAO
+AuthService --> IAdminDAO
+AuthService --> PasswordHash
+
+BibliothequeService --> IRessourceDAO
+BibliothequeService --> IEmpruntDAO
+BibliothequeService --> NotificationService
+
+ReservationService --> IReservationDAO
+ReservationService --> ISalleDAO
+ReservationService --> NotificationService
+
+DemandeService --> IDemandeDAO
+DemandeService --> NotificationService
+
+NotificationService --> INotificationDAO
+
+IEtudiantDAO <|.. EtudiantDAOImpl
+IAdminDAO <|.. AdminDAOImpl
+IRessourceDAO <|.. RessourceDAOImpl
+ICatalogueDAO <|.. CatalogueDAOImpl
+ISalleDAO <|.. SalleDAOImpl
+IEmpruntDAO <|.. EmpruntDAOImpl
+IReservationDAO <|.. ReservationDAOImpl
+IDemandeDAO <|.. DemandeDAOImpl
+INotificationDAO <|.. NotificationDAOImpl
+
+EtudiantDAOImpl --> DatabaseConfig
+AdminDAOImpl --> DatabaseConfig
+RessourceDAOImpl --> DatabaseConfig
+CatalogueDAOImpl --> DatabaseConfig
+SalleDAOImpl --> DatabaseConfig
+EmpruntDAOImpl --> DatabaseConfig
+ReservationDAOImpl --> DatabaseConfig
+DemandeDAOImpl --> DatabaseConfig
+NotificationDAOImpl --> DatabaseConfig
+
+@enduml

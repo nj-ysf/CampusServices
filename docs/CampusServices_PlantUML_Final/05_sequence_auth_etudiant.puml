@@ -1,0 +1,30 @@
+@startuml
+actor Etudiant
+participant "Login.fxml" as LoginView
+participant LoginController
+participant AuthService
+participant EtudiantDAO
+participant PasswordHash
+participant DataStore
+participant MainApp
+
+Etudiant -> LoginView : saisir email + mot de passe
+LoginView -> LoginController : handleLogin()
+LoginController -> AuthService : loginEtudiant(email, password)
+
+AuthService -> EtudiantDAO : findByEmail(email)
+EtudiantDAO --> AuthService : Etudiant
+
+AuthService -> PasswordHash : matches(password, hash)
+PasswordHash --> AuthService : true / false
+
+alt authentifié et statut ACTIF
+    AuthService -> DataStore : setCurrentEtudiant(etudiant)
+    AuthService --> LoginController : succès
+    LoginController -> MainApp : afficherEspaceEtudiant()
+else invalide ou INACTIF
+    AuthService --> LoginController : erreur
+    LoginController --> LoginView : afficher message erreur
+end
+
+@enduml

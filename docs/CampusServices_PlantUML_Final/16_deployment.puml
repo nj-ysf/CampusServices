@@ -1,0 +1,25 @@
+@startuml
+skinparam componentStyle rectangle
+
+node "Poste utilisateur" {
+    artifact "campus-services-fat.jar" as Jar
+    component "Application JavaFX" as JavaFX
+    folder "FXML + CSS" as Resources
+}
+
+node "JDK 19+" {
+    component "Runtime Java" as JVM
+}
+
+node "Serveur local / machine BD" {
+    database "PostgreSQL\ncampus_services" as PostgreSQL
+    artifact "schema.sql" as Schema
+}
+
+Jar --> JavaFX
+JavaFX --> JVM
+JavaFX --> Resources
+JavaFX --> PostgreSQL : JDBC PostgreSQL
+Schema --> PostgreSQL : initialise
+
+@enduml
